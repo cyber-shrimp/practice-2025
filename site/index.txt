@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Главная страница</title>
+</head>
+
+
+<body>
+<div class="container">
+<p></p>
+    <header>
+        <h1>Cистема мониторинга и предотвращения веб-атак с сетевым анализом трафика</h1>
+        <nav>
+            <ul class="menu">
+		<li><a href="index.html">Главная</a></li>
+                <li><a href="О проекте.html">О проекте</a></li>
+		<li><a href="Ресурсы.html">Ресурсы</a></li>
+		<li><a href="Участники.html">Участники</a></li>
+                <li><a href="Журнал.html">Журнал</a></li>
+
+
+            </ul>
+        </nav>
+
+<h2> Главная страница </h2> </header>
+    </header>
+
+    <main>
+        <h3>Аннотация проекта:</h3>
+        <p>   </p>
+    </main>
+    
+<footer>
+<p><h4> &copy; Cистема мониторинга и предотвращения веб-атак с сетевым анализом трафика 2025 </h4> </p>
+</footer>
+</div>
+</body>
+</html>
