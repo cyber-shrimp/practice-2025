@@ -34,7 +34,7 @@ class AppointmentsApiView(APIView):
     def delete(self, request):
         conn = sl.connect('db.sqlite3')
         delete_post = [x for x in Appointment.objects.all().values() if x['id'] == request.data['id']]
-        conn.execute('DELETE FROM appointments_appointment WHERE id = ?', (request.data['id'], ))
+        conn.execute(f'DELETE FROM appointments_appointment WHERE id = {data["id"]}')
         conn.commit()
         conn.close()
 
