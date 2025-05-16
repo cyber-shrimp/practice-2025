@@ -54,11 +54,18 @@
 <div class="post">
         <h3>Отчет о проделанной работе по практике. Пак Алексей </h3>
         <p class="date">1 мая 2025 года</p>
-        <p>Было реализовано автоматическое блокирование подозрительных IP через iptables. Был создан набор для хранения подозрительных ip-адресов, которые заблокированы для этого была вписана команда "sudo ipset create banned_ip hash:ip" , после была вписана команда "sudo iptables -A INPUT -m set --match-set banned_ip src -j DROP" , которая устанавливает правило, что если ip-адрес есть в наборе benned_ip, то пакет с таким адресом отправителя блокируется.
-После была вписана команда "sudo iptables -A INPUT -p tcp --syn -m hashlimit --hashlimit-name syn_flood --hashlimit-mode srcip --hashlimit-above 10/second -j SET --add-set banned_ip src", которая устанавливает правило, что максимальный лимит приема tcp syn-пакетов равен 10 пакетам в секунду, то есть если от ip-адреса пришло больше 10 tcp syn-пакетов в секунду то он заисывается в набор banned_ip. 
-Также была вписана команда "sudo iptables -A INPUT -p icmp --icmp-type echo-request -j SET --add-set banned_ip src", которая устанавливает правило, что icmp-пакеты блокируются.
-После была вписана команда "sudo iptables -A INPUT -p udp -m hashlimit --hashlimit-name nmap_udp --hashlimit-mode srcip --hashlimit-above 5/second -j SET --add-set banned_ip src", которая устанавливает правило, что максимальный лимит приема udp syn-пакетов равен 5 пакетам в секунду, то есть если от ip-адреса пришло больше 5 udp syn-пакетов в секунду то он заисывается в набор banned_ip.
-</p>
+        <p>Было реализовано автоматическое блокирование подозрительных IP через iptables. </p>
+	<p> Как выполнялось задание: </p>
+	<ol>
+		<li>Был создан набор для хранения подозрительных ip-адресов, которые заблокированы для этого была вписана команда "sudo ipset create banned_ip hash:ip" </li>l 
+		<li>После была вписана команда "sudo iptables -A INPUT -m set --match-set banned_ip src -j DROP" , которая устанавливает правило, что если ip-адрес есть в наборе benned_ip, то пакет с таким адресом отправителя блокируется.</li>li
+<li>После была вписана команда "sudo iptables -A INPUT -p tcp --syn -m hashlimit --hashlimit-name syn_flood --hashlimit-mode srcip --hashlimit-above 10/second -j SET --add-set banned_ip src", которая устанавливает правило, что максимальный лимит приема tcp syn-пакетов равен 10 пакетам в секунду, то есть если от ip-адреса пришло больше 10 tcp syn-пакетов в секунду то он заисывается в набор banned_ip. </li>li
+<li>Также была вписана команда "sudo iptables -A INPUT -p icmp --icmp-type echo-request -j SET --add-set banned_ip src", которая устанавливает правило, что icmp-пакеты блокируются.</li>
+<li>После была вписана команда "sudo iptables -A INPUT -p udp -m hashlimit --hashlimit-name nmap_udp --hashlimit-mode srcip --hashlimit-above 5/second -j SET --add-set banned_ip src", которая устанавливает правило, что максимальный лимит приема udp syn-пакетов равен 5 пакетам в секунду, то есть если от ip-адреса пришло больше 5 udp syn-пакетов в секунду то он заисывается в набор banned_ip.</li>
+<li>После была вписана команда "sudo iptables -A INPUT -p tcp --dport 0:1024 -m hashlimit --hashlimit-name port_scan --hashlimit-mode srcip --hashlimit-above 5/minute -j SET --add-set banned_ip src", которая блокирует IP, если он отправляет больше 5 запросов в минуту на системные порты (0-1024).</li>
+<li>После была вписана команда "sudo iptables -A INPUT -p tcp --dport 22 -m recent --name ssh_brute --set
+sudo iptables -A INPUT -p tcp --dport 22 -m recent --name ssh_brute --update --seconds 60 --hitcount 5 -j SET --add-set banned_ip src", которое блокирует IP, если он совершает более 5 попыток подключения к SSH за 60 секунд</li>
+	</ol>
     </div>
 
 <div class="post">
